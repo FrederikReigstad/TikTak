@@ -90,7 +90,7 @@ public class GameBoardTwoPlayer implements IGameModel {
     {
         for (int r = 0; r < gameBoard.length; r++)
         {
-            for (int c = 0; c < gameBoard[r].length; c++)
+            for (int c = 0; c < gameBoard[0].length; c++)
             {
                 gameBoard[r][c] = nuke;
                 if (debug == true)
