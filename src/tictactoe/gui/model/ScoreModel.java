@@ -15,8 +15,13 @@ public class ScoreModel {
         return winners;
     }
 
+
+    /**
+    * Displays the player, who wins. 0 or 1
+    */
     public void setNextWinner(String winner) {
-        //TODO Implement this method.
+        winners.add("Player " + winner);
+
     }
 
 }
