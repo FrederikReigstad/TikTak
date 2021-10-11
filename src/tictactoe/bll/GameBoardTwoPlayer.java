@@ -15,6 +15,17 @@ public class GameBoardTwoPlayer implements IGameModel {
 
     public GameBoardTwoPlayer()
     {
+        for (int r = 0; r < gameBoard.length; r++) // inits 2D array values to be -1
+        {
+            for (int c = 0; c < gameBoard[0].length; c++)
+            {
+                gameBoard[r][c] = nuke;
+                if (debug == true)
+                {
+                    System.out.println("Gameboard init: " + gameBoard[r][c]);
+                }
+            }
+        }
     }
 
     /**
@@ -26,10 +37,10 @@ public class GameBoardTwoPlayer implements IGameModel {
     public int getNextPlayer() {
         if (player % 2 == 0){
 
-            player = 1;
+            player=1;
         }
         else {
-            player = 0 ;
+            player=0;
         }
 
         return player;
@@ -49,7 +60,13 @@ public class GameBoardTwoPlayer implements IGameModel {
     public boolean play(int col, int row)
     {
         boolean isMovePermitted;
-        isMovePermitted = true;
+        if (gameBoard[row][col] == nuke)
+        {
+            gameBoard[row][col] = player;
+            isMovePermitted = true;
+        } else {
+            isMovePermitted = false;
+        }
 
         if (debug == true)
                 {
@@ -111,6 +128,7 @@ public class GameBoardTwoPlayer implements IGameModel {
     @Override
     public int getPlayerAt(int col, int row) {
         int playerAt = gameBoard[row][col];
+
         if (debug == true)
         {
             System.out.println("playerAt: " + playerAt);
