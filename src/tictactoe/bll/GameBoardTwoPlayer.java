@@ -7,9 +7,20 @@ import tictactoe.gui.controller.TicTacViewController;
  * It is used for games where there are two human players.
  */
 public class GameBoardTwoPlayer implements IGameModel {
-    public int player = 0;
-    public GameBoardTwoPlayer() {
 
+    int[][] gameBoard = new int[3][3];
+    public int player = 0;
+    int nuke = -1;
+
+    public GameBoardTwoPlayer()
+    {
+        for (int r = 0; r < gameBoard.length; r++)
+        {
+            for (int c = 0; c < gameBoard[0].length; c++)
+            {
+                gameBoard[r][c] = nuke;
+            }
+        }
     }
 
     /**
@@ -21,17 +32,17 @@ public class GameBoardTwoPlayer implements IGameModel {
     public int getNextPlayer() {
         if (player % 2 == 0){
 
-            player=1;
+            player = 1;
         }
         else {
-            player=0;
+            player = 0 ;
         }
 
         return player;
     }
 
     /**
-     * Attempts to let the current player play at the given coordinates. It the
+     * Attempts to let the current player play at the given coordinates. If the
      * attempt is successful the current player has ended his turn and it is the
      * next players turn.
      *
@@ -41,10 +52,9 @@ public class GameBoardTwoPlayer implements IGameModel {
      * true this method will always return false.
      */
     @Override
-    public boolean play(int col, int row) {
-        //TODO Implement this method
-
-        return true;
+    public boolean play(int col, int row)
+    {
+    return true;
     }
 
     /**
@@ -74,8 +84,8 @@ public class GameBoardTwoPlayer implements IGameModel {
      * Resets the game to a new game state.
      */
     @Override
-    public void newGame() {
-        //TODO Implement this method
+    public void newGame()
+    {
     }
 
     /**
@@ -87,8 +97,7 @@ public class GameBoardTwoPlayer implements IGameModel {
      */
     @Override
     public int getPlayerAt(int col, int row) {
-        //TODO Implement this method
-        return -1;
+        int playerAt = gameBoard[row][col];
+        return playerAt;
     }
-
 }
