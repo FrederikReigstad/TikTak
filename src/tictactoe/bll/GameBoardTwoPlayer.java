@@ -8,19 +8,13 @@ import tictactoe.gui.controller.TicTacViewController;
  */
 public class GameBoardTwoPlayer implements IGameModel {
 
+    Boolean debug = true;
     int[][] gameBoard = new int[3][3];
-    public int player = 0;
+    public int player;
     int nuke = -1;
 
     public GameBoardTwoPlayer()
     {
-        for (int r = 0; r < gameBoard.length; r++)
-        {
-            for (int c = 0; c < gameBoard[0].length; c++)
-            {
-                gameBoard[r][c] = nuke;
-            }
-        }
     }
 
     /**
@@ -54,7 +48,15 @@ public class GameBoardTwoPlayer implements IGameModel {
     @Override
     public boolean play(int col, int row)
     {
-    return true;
+        boolean isMovePermitted;
+        isMovePermitted = true;
+
+        if (debug == true)
+                {
+                    System.out.print("isMovePermitted: " + isMovePermitted);
+                }
+
+    return isMovePermitted;
     }
 
     /**
@@ -86,6 +88,17 @@ public class GameBoardTwoPlayer implements IGameModel {
     @Override
     public void newGame()
     {
+        for (int r = 0; r < gameBoard.length; r++)
+        {
+            for (int c = 0; c < gameBoard[r].length; c++)
+            {
+                gameBoard[r][c] = nuke;
+                if (debug == true)
+                {
+                    System.out.println("Gameboard Reset: " + gameBoard[r][c]);
+                }
+            }
+        }
     }
 
     /**
@@ -98,6 +111,10 @@ public class GameBoardTwoPlayer implements IGameModel {
     @Override
     public int getPlayerAt(int col, int row) {
         int playerAt = gameBoard[row][col];
+        if (debug == true)
+        {
+            System.out.println("playerAt: " + playerAt);
+        }
         return playerAt;
     }
 }
