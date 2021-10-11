@@ -7,23 +7,21 @@ import tictactoe.gui.controller.TicTacViewController;
  * It is used for games where there are two human players.
  */
 public class GameBoardTwoPlayer implements IGameModel {
-    Boolean debug = true;
     int[][] gameBoard = new int[3][3];
     public int player;
     int nuke = -1;
     int winner;
 
+    /**
+     * Inits 2D array and sets all index to -1
+     */
     public GameBoardTwoPlayer()
     {
-        for (int r = 0; r < gameBoard.length; r++) // inits 2D array values to be -1
+        for (int r = 0; r < gameBoard.length; r++)
         {
             for (int c = 0; c < gameBoard[0].length; c++)
             {
                 gameBoard[r][c] = nuke;
-                if (debug == true)
-                {
-                    System.out.println("Gameboard init: " + gameBoard[r][c]);
-                }
             }
         }
     }
@@ -68,11 +66,6 @@ public class GameBoardTwoPlayer implements IGameModel {
             isMovePermitted = false;
         }
 
-        if (debug == true)
-                {
-                    System.out.print("isMovePermitted: " + isMovePermitted);
-                }
-
     return isMovePermitted;
     }
 
@@ -85,8 +78,8 @@ public class GameBoardTwoPlayer implements IGameModel {
     @Override
     public boolean isGameOver() {
 
-        /*
-           Checking if there is a winner horizontal
+        /**
+         *  Checking if there is a winner horizontal
          */
         for (int i = 0; i < 3; i++){
             if (gameBoard[i][0] == gameBoard[i][1] && gameBoard[i][1] == gameBoard[i][2] && gameBoard[i][2] != nuke){
@@ -95,8 +88,8 @@ public class GameBoardTwoPlayer implements IGameModel {
             }
 
         }
-        /*
-           Checking if there is a winner vertical
+        /**
+         *  Checking if there is a winner vertical
          */
         for (int j = 0; j < 3; j++){
             if (gameBoard[0][j] == gameBoard[1][j] && gameBoard[1][j] == gameBoard[2][j] && gameBoard[2][j] != nuke){
@@ -106,24 +99,24 @@ public class GameBoardTwoPlayer implements IGameModel {
 
         }
 
-        /*
-           Checking if there is a winner Diaginal left to right
+        /**
+         *  Checking if there is a winner diagonal left to right
          */
         if(gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2] && gameBoard[0][0] != nuke) {
             this.winner = gameBoard[0][0];
             return true;
         }
 
-        /*
-           Checking if there is a winner Diaginal right to left
+        /**
+         *  Checking if there is a winner diagonal right to left
          */
         if(gameBoard[2][0] == gameBoard[1][1] && gameBoard[1][1] ==  gameBoard[0][2] && gameBoard[2][0] != nuke) {
             this.winner = gameBoard[2][0];
             return true;
         }
 
-        /*
-           Checking if there is a draw to see if there is a nuke int value left on the gameBoard
+        /**
+         *  Checking if there is a draw to see if there is a nuke int value left on the gameBoard
          */
         for (int r = 0; r < gameBoard.length; r++) // inits 2D array values to be -1
         {
@@ -137,8 +130,8 @@ public class GameBoardTwoPlayer implements IGameModel {
             }
         }
 
-         /*
-           if you reach here then the game is a draw
+         /**
+         *  if you reach here then the game is a draw
          */
         this.winner = nuke;
         return true;
@@ -167,10 +160,6 @@ public class GameBoardTwoPlayer implements IGameModel {
             for (int c = 0; c < gameBoard[0].length; c++)
             {
                 gameBoard[r][c] = nuke;
-                if (debug == true)
-                {
-                    System.out.println("Gameboard Reset: " + gameBoard[r][c]);
-                }
             }
         }
     }
@@ -183,13 +172,8 @@ public class GameBoardTwoPlayer implements IGameModel {
      * @return Will return 0 if player 0 has played the field, 1 for player one, and -1 if no player has played the field.
      */
     @Override
-    public int getPlayerAt(int col, int row) {
-        int playerAt = gameBoard[row][col];
-
-        if (debug == true)
-        {
-            System.out.println("playerAt: " + playerAt);
-        }
-        return playerAt;
+    public int getPlayerAt(int col, int row)
+    {
+        return gameBoard[row][col];
     }
 }
