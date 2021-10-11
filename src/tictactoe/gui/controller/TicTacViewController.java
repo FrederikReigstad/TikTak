@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import tictactoe.bll.GameBoardFactory;
+import tictactoe.bll.GameBoardTwoPlayer;
 import tictactoe.bll.IGameModel;
 import tictactoe.gui.model.ScoreModel;
 
@@ -25,6 +26,8 @@ import java.util.ResourceBundle;
  * @author Stegger
  */
 public class TicTacViewController implements Initializable {
+    private GameBoardTwoPlayer twoPlayer = new GameBoardTwoPlayer();
+
     @FXML
     private ChoiceBox<GameBoardFactory.GAME_MODE> choicePlayMode;
 
@@ -100,7 +103,7 @@ public class TicTacViewController implements Initializable {
         Integer row;
         int c;
         int r;
-        int player;
+        int player = twoPlayer.player;
         for (Node n : gridPane.getChildren()) {
             Button btn = (Button) n;
             row = GridPane.getRowIndex(n);
