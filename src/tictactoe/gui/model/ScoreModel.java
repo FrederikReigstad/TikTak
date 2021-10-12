@@ -23,7 +23,7 @@ public class ScoreModel {
 
         if (winner.equals("-1"))
         {
-            winners.add("draw");
+            winners.add("Draw");
         }
         else
         {
