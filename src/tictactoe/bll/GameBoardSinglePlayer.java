@@ -1,4 +1,5 @@
 package tictactoe.bll;
+import java.util.Random;
 
 /**
  * The GameBoardSinglePlayer class is the optional and advanced implementation for the TicTacToe assignment.
@@ -32,12 +33,12 @@ public class GameBoardSinglePlayer implements IGameModel {
         
         if (player % 2 == 0){
 
-            player=1;
+            player = 1;
         }
         else {
-            player=2;
-        }
+            player = 2;
 
+        }
         return player;
 
     }
@@ -54,7 +55,7 @@ public class GameBoardSinglePlayer implements IGameModel {
      */
     @Override
     public boolean play(int col, int row) {
-        boolean isMovePermitted;
+       
         if (!isGameOver() && gameBoard[row][col] == nuke)
         {
             gameBoard[row][col] = player;
@@ -162,5 +163,20 @@ public class GameBoardSinglePlayer implements IGameModel {
     @Override
     public int getPlayerAt(int col, int row)     {
         return gameBoard[row][col];
+    }
+    
+    public void aiPlay(){
+
+        Random rand = new Random();
+        int row = rand.nextInt(3);
+        int col = rand.nextInt(3);
+
+        while (gameBoard[row][col] != nuke){
+            col = rand.nextInt(3);
+            row = rand.nextInt(3);
+        }
+
+        play(row, col);
+        player = 1;
     }
 }
