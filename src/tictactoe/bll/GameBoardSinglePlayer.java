@@ -6,7 +6,19 @@ package tictactoe.bll;
  */
 public class GameBoardSinglePlayer implements IGameModel {
     GameBoardTwoPlayer twoPlayer = new GameBoardTwoPlayer();
+
+    int[][] gameBoard = new int[3][3];
+    public int player = 2;
+    int nuke = -1;
+    int winner;
     protected GameBoardSinglePlayer() {
+        for (int r = 0; r < gameBoard.length; r++)
+        {
+            for (int c = 0; c < gameBoard[0].length; c++)
+            {
+                gameBoard[r][c] = nuke;
+            }
+        }
 
     }
 
@@ -42,8 +54,14 @@ public class GameBoardSinglePlayer implements IGameModel {
      */
     @Override
     public boolean play(int col, int row) {
-        //TODO Implement this method
-        return false;
+        boolean isMovePermitted;
+        if (gameBoard[row][col] == nuke)
+        {
+            gameBoard[row][col] = player;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -54,8 +72,60 @@ public class GameBoardSinglePlayer implements IGameModel {
      */
     @Override
     public boolean isGameOver() {
-        //TODO Implement this method
-        return false;
+        for (int i = 0; i < 3; i++){
+            if (gameBoard[i][0] == gameBoard[i][1] && gameBoard[i][1] == gameBoard[i][2] && gameBoard[i][2] != nuke){
+                this.winner = gameBoard[i][0];
+                return true;
+            }
+
+        }
+        /**
+         *  Checking if there is a winner vertical
+         */
+        for (int j = 0; j < 3; j++){
+            if (gameBoard[0][j] == gameBoard[1][j] && gameBoard[1][j] == gameBoard[2][j] && gameBoard[2][j] != nuke){
+                this.winner = gameBoard[0][j];
+                return true;
+            }
+
+        }
+
+        /**
+         *  Checking if there is a winner diagonal left to right
+         */
+        if(gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2] && gameBoard[0][0] != nuke) {
+            this.winner = gameBoard[0][0];
+            return true;
+        }
+
+        /**
+         *  Checking if there is a winner diagonal right to left
+         */
+        if(gameBoard[2][0] == gameBoard[1][1] && gameBoard[1][1] ==  gameBoard[0][2] && gameBoard[2][0] != nuke) {
+            this.winner = gameBoard[2][0];
+            return true;
+        }
+
+        /**
+         *  Checking if there is a draw to see if there is a nuke int value left on the gameBoard
+         */
+        for (int r = 0; r < gameBoard.length; r++) // inits 2D array values to be -1
+        {
+            for (int c = 0; c < gameBoard[0].length; c++)
+            {
+
+                if (gameBoard[r][c] == nuke)
+                {
+                    return false;
+                }
+            }
+        }
+
+        /**
+         *  if you reach here then the game is a draw
+         */
+        this.winner = nuke;
+        return true;
     }
 
     /**
@@ -65,8 +135,7 @@ public class GameBoardSinglePlayer implements IGameModel {
      */
     @Override
     public int getWinner() {
-        //TODO Implement this method
-        return 0;
+        return winner;
     }
 
     /**
@@ -74,7 +143,13 @@ public class GameBoardSinglePlayer implements IGameModel {
      */
     @Override
     public void newGame() {
-        //TODO Implement this method
+        for (int r = 0; r < gameBoard.length; r++)
+        {
+            for (int c = 0; c < gameBoard[0].length; c++)
+            {
+                gameBoard[r][c] = nuke;
+            }
+        }
     }
 
     /**
@@ -85,8 +160,7 @@ public class GameBoardSinglePlayer implements IGameModel {
      * @return Will return 0 if player 0 has played the field, 1 for player one, and -1 if no player has played the field.
      */
     @Override
-    public int getPlayerAt(int col, int row) {
-        //TODO Implement this method
-        return -1;
+    public int getPlayerAt(int col, int row)     {
+        return gameBoard[row][col];
     }
 }
