@@ -5,7 +5,6 @@ package tictactoe.bll;
  * It is used for games where there are one human player vs. a computer player.
  */
 public class GameBoardSinglePlayer implements IGameModel {
-    GameBoardTwoPlayer twoPlayer = new GameBoardTwoPlayer();
 
     int[][] gameBoard = new int[3][3];
     public int player = 2;
@@ -29,7 +28,8 @@ public class GameBoardSinglePlayer implements IGameModel {
      */
     @Override
     public int getNextPlayer() {
-        int player = twoPlayer.player;
+        
+        
         if (player % 2 == 0){
 
             player=1;
