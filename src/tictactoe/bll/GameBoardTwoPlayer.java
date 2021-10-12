@@ -61,12 +61,10 @@ public class GameBoardTwoPlayer implements IGameModel {
         if (gameBoard[row][col] == nuke)
         {
             gameBoard[row][col] = player;
-            isMovePermitted = true;
+            return true;
         } else {
-            isMovePermitted = false;
+            return false;
         }
-
-    return isMovePermitted;
     }
 
     /**
