@@ -8,7 +8,7 @@ import tictactoe.gui.controller.TicTacViewController;
  */
 public class GameBoardTwoPlayer implements IGameModel {
     int[][] gameBoard = new int[3][3];
-    public int player;
+    public int player = 2;
     int nuke = -1;
     int winner;
 
@@ -38,7 +38,7 @@ public class GameBoardTwoPlayer implements IGameModel {
             player=1;
         }
         else {
-            player=0;
+            player=2;
         }
 
         return player;

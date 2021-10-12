@@ -112,7 +112,7 @@ public class TicTacViewController implements Initializable {
             c = (col == null) ? 0 : col;
             player = game.getPlayerAt(c, r);
             if (player != -1) {
-                String xOrO = player == 0 ? "X" : "O";
+                String xOrO = player == 2 ? "X" : "O";
                 btn.setText(xOrO);
             }
         }
