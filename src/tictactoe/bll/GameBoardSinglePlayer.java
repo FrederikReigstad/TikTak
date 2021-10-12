@@ -23,7 +23,7 @@ public class GameBoardSinglePlayer implements IGameModel {
             player=1;
         }
         else {
-            player=0;
+            player=2;
         }
 
         return player;

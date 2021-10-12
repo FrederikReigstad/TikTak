@@ -20,6 +20,7 @@ public class ScoreModel {
     * Displays the player, who wins. 0 or 1
     */
     public void setNextWinner(String winner) {
+
         winners.add("Player " + winner);
 
     }
