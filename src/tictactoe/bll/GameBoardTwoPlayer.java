@@ -131,6 +131,7 @@ public class GameBoardTwoPlayer implements IGameModel {
          /**
          *  if you reach here then the game is a draw
          */
+
         this.winner = nuke;
         return true;
     }

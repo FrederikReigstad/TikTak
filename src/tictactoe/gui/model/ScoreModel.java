@@ -21,11 +21,14 @@ public class ScoreModel {
     */
     public void setNextWinner(String winner) {
 
-        if (winners.equals("-1") )
-        winners.add("Player " + winner);
-        else
+        if (winner.equals("-1"))
+        {
             winners.add("draw");
-
+        }
+        else
+        {
+            winners.add("Player " + winner);
+        }
     }
 
 }
