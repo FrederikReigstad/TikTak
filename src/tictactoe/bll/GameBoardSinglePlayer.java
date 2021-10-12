@@ -55,7 +55,7 @@ public class GameBoardSinglePlayer implements IGameModel {
     @Override
     public boolean play(int col, int row) {
         boolean isMovePermitted;
-        if (gameBoard[row][col] == nuke)
+        if (isGameOver() && gameBoard[row][col] == nuke)
         {
             gameBoard[row][col] = player;
             return true;
