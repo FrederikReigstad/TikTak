@@ -11,6 +11,7 @@ public class GameBoardSinglePlayer implements IGameModel {
     public int player = 2;
     int nuke = -1;
     int winner;
+
     protected GameBoardSinglePlayer() {
         for (int r = 0; r < gameBoard.length; r++)
         {
@@ -19,7 +20,6 @@ public class GameBoardSinglePlayer implements IGameModel {
                 gameBoard[r][c] = nuke;
             }
         }
-
     }
 
     /**
@@ -55,15 +55,22 @@ public class GameBoardSinglePlayer implements IGameModel {
      */
     @Override
     public boolean play(int col, int row) {
-       
-        if (!isGameOver() && gameBoard[row][col] == nuke)
-        {
-            gameBoard[row][col] = player;
-            return true;
-        } else {
-            return false;
+        if (!isGameOver() && gameBoard[row][col] == nuke) {
+            if (player == 2) {
+                Random rand = new Random();
+                row = rand.nextInt(3);
+                col = rand.nextInt(3);
+
+                while (gameBoard[row][col] != nuke) {
+                    col = rand.nextInt(3);
+                    row = rand.nextInt(3);
+                }}
+                gameBoard[row][col] = player;
+                return true;
+            } else {
+                return false;
+            }
         }
-    }
 
     /**
      * Tells us if the game has ended either by draw or by meeting the winning
@@ -163,20 +170,5 @@ public class GameBoardSinglePlayer implements IGameModel {
     @Override
     public int getPlayerAt(int col, int row)     {
         return gameBoard[row][col];
-    }
-    
-    public void aiPlay(){
-
-        Random rand = new Random();
-        int row = rand.nextInt(3);
-        int col = rand.nextInt(3);
-
-        while (gameBoard[row][col] != nuke){
-            col = rand.nextInt(3);
-            row = rand.nextInt(3);
-        }
-
-        play(row, col);
-        player = 1;
     }
 }

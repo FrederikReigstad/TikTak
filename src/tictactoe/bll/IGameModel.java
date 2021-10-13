@@ -57,4 +57,5 @@ public interface IGameModel {
      * @return Will return 0 if player 0 has played the field, 1 for player one, and -1 if no player has played the field.
      */
     int getPlayerAt(int col, int row);
+
 }
